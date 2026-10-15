@@ -40,9 +40,25 @@ sudo dnf install wine
 
 ---
 
-## 🚀 1-Line Installation
+## 📦 Option A: Portable AppImage (No Installation Needed)
 
-Run the following command in your terminal:
+The simplest way to run Live MCQ on any Linux distribution without installing anything:
+
+1. Download **[`LiveMCQ-x86_64.AppImage`](https://github.com/sadabx/livemcq-linux/releases/latest/download/LiveMCQ-x86_64.AppImage)** from [Releases](https://github.com/sadabx/livemcq-linux/releases).
+2. Make it executable:
+   ```bash
+   chmod +x LiveMCQ-x86_64.AppImage
+   ```
+3. Double-click it to run, or launch from terminal:
+   ```bash
+   ./LiveMCQ-x86_64.AppImage
+   ```
+
+---
+
+## 🚀 Option B: 1-Line Desktop Installation
+
+If you prefer Live MCQ installed into your system app launcher menu (GNOME/KDE) with permanent shortcuts:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/sadabx/livemcq-linux/main/install.sh | bash
