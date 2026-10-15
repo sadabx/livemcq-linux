@@ -1,6 +1,6 @@
 # Live MCQ™ Desktop for Linux
 
-[![Linux](https://img.shields.io/badge/Platform-Linux-FCC624?logo=linux&logoColor=black)](https://github.com/mrsadab/livemcq-linux)
+[![Linux](https://img.shields.io/badge/Platform-Linux-FCC624?logo=linux&logoColor=black)](https://github.com/sadabx/livemcq-linux)
 [![Wine](https://img.shields.io/badge/Powered%20by-Wine-722F37?logo=wine&logoColor=white)](https://winehq.org)
 [![Flutter](https://img.shields.io/badge/Engine-Flutter-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 
@@ -45,7 +45,7 @@ sudo dnf install wine
 Run the following command in your terminal:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mrsadab/livemcq-linux/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/sadabx/livemcq-linux/main/install.sh | bash
 ```
 
 The script will automatically:
@@ -71,7 +71,7 @@ The script will automatically:
 To remove Live MCQ and all its shortcuts completely, run:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mrsadab/livemcq-linux/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/sadabx/livemcq-linux/main/uninstall.sh | bash
 ```
 
 ---

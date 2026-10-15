@@ -7,7 +7,7 @@
 set -e
 
 # Default repository for downloading release assets when piped via curl
-GITHUB_REPO="${GITHUB_REPO:-mrsadab/livemcq-linux}"
+GITHUB_REPO="${GITHUB_REPO:-sadabx/livemcq-linux}"
 VERSION="${VERSION:-v1.7.0}"
 RELEASE_URL="https://github.com/${GITHUB_REPO}/releases/download/${VERSION}/livemcq-linux-x64.tar.gz"
 
