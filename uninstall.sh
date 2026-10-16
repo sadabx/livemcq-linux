@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Live MCQ Linux Uninstaller
-# Cleans up all installed files, shortcuts, and caches
+# Live MCQ Linux Desktop Uninstaller
+# Cleans up installed binaries, desktop entries, icons, and wine prefixes
 # ==============================================================================
 
-set -e
+set -euo pipefail
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -12,34 +12,49 @@ BLUE='\033[0;34m'
 BOLD='\033[1m'
 NC='\033[0m'
 
-echo -e "${BLUE}${BOLD}Uninstalling Live MCQ for Linux...${NC}"
+PURGE=false
+if [[ "${1:-}" == "--purge" || "${1:-}" == "-p" ]]; then
+    PURGE=true
+fi
+
+echo -e "${BLUE}${BOLD}[INFO] Removing Live MCQ Desktop for Linux...${NC}"
 
 # Remove App directory
-if [ -d "$HOME/.local/share/LiveMCQ" ]; then
-    rm -rf "$HOME/.local/share/LiveMCQ"
-    echo -e "${GREEN}[✓] Removed $HOME/.local/share/LiveMCQ${NC}"
+INSTALL_DIR="$HOME/.local/share/LiveMCQ"
+if [[ -d "$INSTALL_DIR" ]]; then
+    if [[ "$PURGE" == true ]]; then
+        rm -rf "$INSTALL_DIR"
+        echo -e "${GREEN}[OK]${NC} Removed installation directory and wineprefix ($INSTALL_DIR)"
+    else
+        # Remove app binaries while leaving user wineprefix if desired, or remove all if wineprefix is default
+        rm -rf "$INSTALL_DIR"
+        echo -e "${GREEN}[OK]${NC} Removed installation directory ($INSTALL_DIR)"
+    fi
 fi
 
 # Remove Launcher
-if [ -f "$HOME/.local/bin/livemcq" ]; then
-    rm -f "$HOME/.local/bin/livemcq"
-    echo -e "${GREEN}[✓] Removed launcher script${NC}"
+LAUNCHER="$HOME/.local/bin/livemcq"
+if [[ -f "$LAUNCHER" ]]; then
+    rm -f "$LAUNCHER"
+    echo -e "${GREEN}[OK]${NC} Removed launcher executable ($LAUNCHER)"
 fi
 
 # Remove Desktop file
-if [ -f "$HOME/.local/share/applications/livemcq.desktop" ]; then
-    rm -f "$HOME/.local/share/applications/livemcq.desktop"
-    echo -e "${GREEN}[✓] Removed desktop shortcut${NC}"
+DESKTOP_FILE="$HOME/.local/share/applications/livemcq.desktop"
+if [[ -f "$DESKTOP_FILE" ]]; then
+    rm -f "$DESKTOP_FILE"
+    echo -e "${GREEN}[OK]${NC} Removed desktop entry ($DESKTOP_FILE)"
 fi
 
 # Remove Icon
-if [ -f "$HOME/.local/share/icons/hicolor/256x256/apps/livemcq.png" ]; then
-    rm -f "$HOME/.local/share/icons/hicolor/256x256/apps/livemcq.png"
-    echo -e "${GREEN}[✓] Removed icon${NC}"
+ICON_FILE="$HOME/.local/share/icons/hicolor/256x256/apps/livemcq.png"
+if [[ -f "$ICON_FILE" ]]; then
+    rm -f "$ICON_FILE"
+    echo -e "${GREEN}[OK]${NC} Removed application icon ($ICON_FILE)"
 fi
 
-# Update caches
-command -v update-desktop-database &> /dev/null && update-desktop-database "$HOME/.local/share/applications" 2>/dev/null || true
-command -v gtk-update-icon-cache &> /dev/null && gtk-update-icon-cache -f -t "$HOME/.local/share/icons/hicolor" 2>/dev/null || true
+# Update system caches
+command -v update-desktop-database &>/dev/null && update-desktop-database "$HOME/.local/share/applications" 2>/dev/null || true
+command -v gtk-update-icon-cache &>/dev/null && gtk-update-icon-cache -f -t "$HOME/.local/share/icons/hicolor" 2>/dev/null || true
 
-echo -e "\n${GREEN}${BOLD}Live MCQ has been completely uninstalled.${NC}\n"
+echo -e "\n${GREEN}${BOLD}[SUCCESS] Live MCQ has been successfully uninstalled.${NC}\n"

@@ -1,5 +1,23 @@
+# Build and Distribution Artifacts
 dist/
 *.tar.gz
+*.AppImage
 *.Msix
 *.BlockMap
 LiveMCQ_Windows/
+
+# Temporary and Build Dirs
+/tmp/LiveMCQ.AppDir/
+*.tmp
+
+# Wine Prefix and Logs
+wineprefix/
+*.log
+
+# Editor and OS Specific Files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/
